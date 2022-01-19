@@ -43,7 +43,7 @@ body {
   text-align: end;
 }
 
-.place-container .timezone {
+.place-container .city {
   font-size: 30px;
   font-weight: 150;
 }
@@ -150,4 +150,9 @@ ul {
   margin: 2px;
   border: 1px solid #eee;
   text-align: center;
+}
+
+.w-icon {
+  width: 100px;
+  height: 100px;
 }

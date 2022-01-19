@@ -13,18 +13,29 @@ $(document).ready(function () {
     var url = `https:api.openweathermap.org/data/2.5/weather?q=Brisbane&units=metric&appid=${APIKey}`;
     $.get(url, function (data, status) {
       console.log(data);
-
+      showWeatherData(data);
+      showForecast();
     });
   }
 
-  //Display the chose city data//
-  showWeatherData();
+  //Display the chosen city data//
   function showWeatherData(data) {
-    // $("#timezone").text(""); //must change here
-    // $("#country").text("");
+    var icon = data.weather[0].icon;
+    var iconURL = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
+    $(".w-icon").attr("src", iconURL);
+    console.log(data);
+    $("#city").text(data.name);
+    $("#country").text(data.country);
+    $("#temperatureSet").text(data.main.temp + " °C");
+    $("#windSet").text(data.wind.speed); ///check what this is in - km/h?? miles?
+    $("#humiditySet").text(data.main.humidity + "  %");
+    $("#uvSet").text(""); ////find out where this is kept
   }
-
 });
+
+function showForecast() {}
+
+//
 
 ///To Do List/////
 //set Default City Name and Country top right - where says must change
@@ -33,4 +44,3 @@ $(document).ready(function () {
 //update icons for 5 day forecast
 //add event listener on search button to change data to new city
 //localstorage to save previous searches to "search history"
-
