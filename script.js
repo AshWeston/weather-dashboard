@@ -22,20 +22,30 @@ $(document).ready(function () {
   function showWeatherData(data) {
     var icon = data.weather[0].icon;
     var iconURL = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
+    var lat = data.coord.lat; //to use for the UVI below
+    var lon = data.coord.lon; ///to use for the UVI below
     $(".w-icon").attr("src", iconURL);
-    console.log(data);
     $("#city").text(data.name);
     $("#country").text(data.country);
     $("#temperatureSet").text(data.main.temp + " °C");
-    $("#windSet").text(data.wind.speed); ///check what this is in - km/h?? miles?
+    $("#windSet").text(data.wind.speed + " m/s");
     $("#humiditySet").text(data.main.humidity + "  %");
-    $("#uvSet").text(""); ////find out where this is kept
+
+    // get UVI///
+
+    $.ajax({
+      method: "GET",
+      url: `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${APIKey}`,
+    }).then(function (uvdata) {
+      console.log(uvdata);
+      $("#uvSet").text(uvdata[0].value); ////need to fix this line -this is wrong
+    });
   }
 });
 
 function showForecast() {}
 
-//
+//`https://api.openweathermap.org/data/2.5/onecall?lat${lat}&lon${lon}&appid=${APIKey}`, https://api.openweathermap.org/data/2.5/uvi/forecast?appid=${APIKey}&lat=${lat}&lon=${lon}
 
 ///To Do List/////
 //set Default City Name and Country top right - where says must change
