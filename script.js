@@ -13,21 +13,17 @@ $(document).ready(function () {
     var url = `https:api.openweathermap.org/data/2.5/weather?q=Brisbane&units=metric&appid=${APIKey}`;
     $.get(url, function (data, status) {
       console.log(data);
-      displayDataNew(data);
-      fiveDayData(data.name);
+
     });
   }
 
-  //Display the default city//
+  //Display the chose city data//
   showWeatherData();
   function showWeatherData(data) {
     // $("#timezone").text(""); //must change here
     // $("#country").text("");
   }
 
-  function displayDataNew(data) {}
-
-  function fiveDayData(data) {}
 });
 
 ///To Do List/////
