@@ -50,12 +50,12 @@ body {
 
 .place-container .time-zone {
   font-size: 30px;
-  font-weight: 100;
+  font-weight: 150;
 }
 
 .place-container .country {
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .current-info .others {
@@ -100,17 +100,47 @@ body {
 .lower-container .city-search .search-heading {
   padding: 5px 15px;
   text-align: center;
-  font-size: 30px;
+  font-size: 20px;
+  font-weight: 200;
 }
 
-.weather-item .weather-forecast-item .date {
+.weather-forecast .weather-forecast-item .date {
   padding: 5px 15px;
 }
 
-.lower-container .city-search .card {
-  border-radius: 5px;
+.weather-forecast .weather-forecast-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 5px;
 }
 
-.input {
+.form-item {
   background-color: rgba(224, 224, 230, 0.8);
+  padding: 10px 0;
+  width: 100%;
+  border-radius: 5px;
+  border-color: white;
+  margin: 2px;
+  border: 1px solid #eee;
+  text-align: center;
+}
+
+#search-btn:hover {
+  box-shadow: 0 0.4rem 1.4rem 0 rgb(58, 55, 57);
+}
+
+@media only screen and (max-width: 730px) {
+  .container {
+    padding: 20px;
+  }
+  .lower-container {
+    justify-content: start;
+    align-items: none;
+    overflow-y: scroll;
+  }
 }
