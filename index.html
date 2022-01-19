@@ -8,7 +8,7 @@
     <title>Weather Dashboard</title>
   </head>
   <body>
-    <!-- Main Container -->
+    <!-- Top Container -->
     <div class="container">
       <div class="current-info">
         <div class="date-container">
@@ -40,8 +40,36 @@
         </div>
       </div>
     </div>
-    <!-- Forecast Container -->
-    <div class="future-forecast">
+    
+    <!-- Lower Container -->
+
+    <div class="lower-container">
+      <div class="city-search">
+        <div class="search-heading card">Search for a City</div>
+        <form>
+          <input class = "input card" type="search" placeholder="Choose a City" />
+          <button class="btn card" id="search-btn" type="submit">Search
+          </button>
+        </form>
+        <br />
+        <div class="city-card card">
+          <ul>
+            Amsterdam
+          </ul>
+          <ul>
+            Phuket
+          </ul>
+          <ul>
+            Brisbane
+          </ul>
+          <ul>
+            Madrid
+          </ul>
+          <ul>
+            Tokyo
+          </ul>
+        </div>
+      </div>
       <div class="weather-forecast" id="weather-forecast">
         <div class="weather-forecast-item">
           <div class="date">Thursday 20th of January</div>
@@ -99,6 +127,7 @@
           <div class="weather-card-info">Humidity:66%</div>
         </div>
       </div>
+      
     </div>
   </body>
 </html>
