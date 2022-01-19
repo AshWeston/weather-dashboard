@@ -48,13 +48,13 @@ body {
   text-align: end;
 }
 
-.place-container .time-zone {
+.place-container .timezone {
   font-size: 30px;
   font-weight: 150;
 }
 
 .place-container .country {
-  font-size: 12px;
+  font-size: 18px;
   font-weight: 800;
 }
 
@@ -100,8 +100,8 @@ body {
 .lower-container .city-search .search-heading {
   padding: 5px 15px;
   text-align: center;
-  font-size: 20px;
-  font-weight: 200;
+  font-size: 40px;
+  font-weight: 400;
 }
 
 .weather-forecast .weather-forecast-item .date {
@@ -117,6 +117,7 @@ body {
   border: 1px solid #eee;
   border-radius: 10px;
   padding: 5px;
+  background-color: rgba(27, 27, 34, 0.3);
 }
 
 .form-item {
@@ -143,4 +144,15 @@ body {
     align-items: none;
     overflow-y: scroll;
   }
+}
+
+ul {
+  padding: 1px;
+  background-color: rgba(27, 27, 34, 0.3);
+  width: 100%;
+  border-radius: 5px;
+  border-color: white;
+  margin: 2px;
+  border: 1px solid #eee;
+  text-align: center;
 }

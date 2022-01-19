@@ -18,25 +18,25 @@
           <div class="others" id="current-weather-items">
             <div class="weather-item">
               <div>Temperature</div>
-              <div>95F</div>
+              <div id="temperatureSet">XXF</div>
             </div>
             <div class="weather-item">
               <div>Wind</div>
-              <div>6.67MPH</div>
+              <div id="windSet">XXMPH</div>
             </div>
             <div class="weather-item">
               <div>Humidity</div>
-              <div>46%</div>
+              <div id="humiditySet">XX%</div>
             </div>
             <div class="weather-item">
               <div>UV Index</div>
-              <div>0.47</div>
+              <div id="uvSet">XX</div>
             </div>
           </div>
         </div>
         <div class="place-container">
-          <div class="time-zone" id="time-zone">Asia</div>
-          <div class="country" id="country">INDIA</div>
+          <div class="timezone" id="timezone">Brisbane</div>
+          <div class="country" id="country">AUSTRALIA</div>
         </div>
       </div>
     </div>
@@ -45,31 +45,32 @@
 
     <div class="lower-container">
       <div class="city-search">
-        <div class="search-heading">Search for a City</div>
+        <div class="search-heading">5 Day Forecast</div>
         <form>
           <input class="form-item" type="search" placeholder="Choose a City" />
           <button class="form-item" id="search-btn" type="submit">
             Search
           </button>
+
+          <br />
+          <div class="search-history">
+            <ul>
+              AmsteXrdam
+            </ul>
+            <ul>
+              Phuket
+            </ul>
+            <ul>
+              Brisbane
+            </ul>
+            <ul>
+              Madrid
+            </ul>
+            <ul>
+              Tokyo
+            </ul>
+          </div>
         </form>
-        <br />
-        <div class="city-card card">
-          <ul>
-            Amsterdam
-          </ul>
-          <ul>
-            Phuket
-          </ul>
-          <ul>
-            Brisbane
-          </ul>
-          <ul>
-            Madrid
-          </ul>
-          <ul>
-            Tokyo
-          </ul>
-        </div>
       </div>
       <div class="weather-forecast" id="weather-forecast">
         <div class="weather-forecast-item">
@@ -79,9 +80,9 @@
             alt="weather icon"
             class="w-icon"
           />
-          <div class="weather-card-info">Temp:72.3F</div>
-          <div class="weather-card-info">Wind: 9.53MPH</div>
-          <div class="weather-card-info">Humidity:66%</div>
+          <div class="weather-card-info">Temp:XX</div>
+          <div class="weather-card-info">Wind: XX</div>
+          <div class="weather-card-info">Humidity:XX</div>
         </div>
         <div class="weather-forecast-item">
           <div class="date">Friday 21st of January</div>
@@ -90,9 +91,9 @@
             alt="weather icon"
             class="w-icon"
           />
-          <div class="weather-card-info">Temp:72.3F</div>
-          <div class="weather-card-info">Wind: 9.53MPH</div>
-          <div class="weather-card-info">Humidity:66%</div>
+          <div class="weather-card-info">Temp:XX</div>
+          <div class="weather-card-info">Wind: XX</div>
+          <div class="weather-card-info">Humidity:XX</div>
         </div>
         <div class="weather-forecast-item">
           <div class="date">Saturday 22nd of January</div>
@@ -101,9 +102,9 @@
             alt="weather icon"
             class="w-icon"
           />
-          <div class="weather-card-info">Temp:72.3F</div>
-          <div class="weather-card-info">Wind: 9.53MPH</div>
-          <div class="weather-card-info">Humidity:66%</div>
+          <div class="weather-card-info">Temp:XX</div>
+          <div class="weather-card-info">Wind: XX</div>
+          <div class="weather-card-info">Humidity:XX</div>
         </div>
         <div class="weather-forecast-item">
           <div class="date">Sunday 23rd of January</div>
@@ -112,9 +113,9 @@
             alt="weather icon"
             class="w-icon"
           />
-          <div class="weather-card-info">Temp:72.3F</div>
-          <div class="weather-card-info">Wind: 9.53MPH</div>
-          <div class="weather-card-info">Humidity:66%</div>
+          <div class="weather-card-info">Temp:XX</div>
+          <div class="weather-card-info">Wind: XX</div>
+          <div class="weather-card-info">Humidity:XX</div>
         </div>
         <div class="weather-forecast-item">
           <div class="date">Monday 24th of January</div>
@@ -123,11 +124,13 @@
             alt="weather icon"
             class="w-icon"
           />
-          <div class="weather-card-info">Temp:72.3F</div>
-          <div class="weather-card-info">Wind: 9.53MPH</div>
-          <div class="weather-card-info">Humidity:66%</div>
+          <div class="weather-card-info">Temp:XX</div>
+          <div class="weather-card-info">Wind: XX</div>
+          <div class="weather-card-info">Humidity:XX</div>
         </div>
       </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
