@@ -32,22 +32,18 @@ $(document).ready(function () {
     $("#humiditySet").text(data.main.humidity + "  %");
 
     // get UVI///
-
     fetch(
       `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,daily&appid=82ad17d25281f665f0ef2bd44088ca51`
     )
       .then((res) => res.json())
-      .then(function (uvdata) {
-        console.log(uvdata);
-        $("#uvSet").text("uvi"); ////need to fix this line -this is wrong
+      .then(function (uvData) {
+        console.log(uvData);
+        $("#uvSet").text(uvData.current.uvi);
       });
   }
 });
 
 function showForecast() {}
-
-//`https://api.openweathermap.org/data/2.5/onecall?lat${lat}&lon${lon}&appid=${APIKey}`, https://api.openweathermap.org/data/2.5/uvi/forecast?appid=${APIKey}&lat=${lat}&lon=${lon}
-//`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${APIKey}`,
 
 ///To Do List/////
 //set Default City Name and Country top right - where says must change ***DONE
@@ -56,3 +52,4 @@ function showForecast() {}
 //update icons for 5 day forecast
 //add event listener on search button to change data to new city
 //localstorage to save previous searches to "search history"
+//round temperature to nearest full degree.
