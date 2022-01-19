@@ -33,23 +33,25 @@ $(document).ready(function () {
 
     // get UVI///
 
-    $.ajax({
-      method: "GET",
-      url: `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${APIKey}`,
-    }).then(function (uvdata) {
-      console.log(uvdata);
-      $("#uvSet").text(uvdata[0].value); ////need to fix this line -this is wrong
-    });
+    fetch(
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,daily&appid=82ad17d25281f665f0ef2bd44088ca51`
+    )
+      .then((res) => res.json())
+      .then(function (uvdata) {
+        console.log(uvdata);
+        $("#uvSet").text("uvi"); ////need to fix this line -this is wrong
+      });
   }
 });
 
 function showForecast() {}
 
 //`https://api.openweathermap.org/data/2.5/onecall?lat${lat}&lon${lon}&appid=${APIKey}`, https://api.openweathermap.org/data/2.5/uvi/forecast?appid=${APIKey}&lat=${lat}&lon=${lon}
+//`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${APIKey}`,
 
 ///To Do List/////
-//set Default City Name and Country top right - where says must change
-//use data from default city to set temp/wind etc to current weather items
+//set Default City Name and Country top right - where says must change ***DONE
+//use data from default city to set temp/wind etc to current weather items **** DONE
 //use data from default city to set next 5 day to weather forecast items/weather card info
 //update icons for 5 day forecast
 //add event listener on search button to change data to new city
