@@ -27,7 +27,7 @@ $(document).ready(function () {
     $(".w-icon").attr("src", iconURL);
     $("#city").text(data.name);
     $("#country").text(data.country);
-    $("#temperatureSet").text(data.main.temp + " °C");
+    $("#temperatureSet").text(Math.round(data.main.temp) + " °C");
     $("#windSet").text(data.wind.speed + " m/s");
     $("#humiditySet").text(data.main.humidity + "  %");
 
@@ -38,7 +38,14 @@ $(document).ready(function () {
       .then((res) => res.json())
       .then(function (uvData) {
         console.log(uvData);
+        var uv = uvData.current.uvi;
+        console.log(uv);
         $("#uvSet").text(uvData.current.uvi);
+        //set colors for UV Index
+        if (uv < 3) {
+          console.log("Hello");
+          // $("#uvSet").attr("background-color", "green");
+        } else console.log("Hi");
       });
   }
 });
@@ -48,8 +55,9 @@ function showForecast() {}
 ///To Do List/////
 //set Default City Name and Country top right - where says must change ***DONE
 //use data from default city to set temp/wind etc to current weather items **** DONE
+//round temperature to nearest full degree. ***DONE
+//colors for UVIndex
 //use data from default city to set next 5 day to weather forecast items/weather card info
 //update icons for 5 day forecast
 //add event listener on search button to change data to new city
 //localstorage to save previous searches to "search history"
-//round temperature to nearest full degree.

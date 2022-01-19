@@ -156,3 +156,10 @@ ul {
   width: 100px;
   height: 100px;
 }
+
+#uvSet {
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
+  border-color: white;
+}
