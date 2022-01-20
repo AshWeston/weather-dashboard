@@ -164,3 +164,7 @@ ul {
   border-color: white;
   font-weight: 400;
 }
+
+.weather-item {
+  font-weight: 300;
+}

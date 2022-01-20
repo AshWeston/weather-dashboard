@@ -10,11 +10,10 @@ $(document).ready(function () {
   setDefaultCity();
 
   function setDefaultCity() {
-    var url = `https:api.openweathermap.org/data/2.5/weather?q=Brisbane&units=metric&appid=${APIKey}`;
-    $.get(url, function (data, status) {
+    var defaultURL = `https:api.openweathermap.org/data/2.5/weather?q=Brisbane&units=metric&appid=${APIKey}`;
+    $.get(defaultURL, function (data, status) {
       console.log(data);
       showWeatherData(data);
-      showForecast();
     });
   }
 
@@ -33,14 +32,13 @@ $(document).ready(function () {
 
     // get UVI///
     fetch(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,daily&appid=82ad17d25281f665f0ef2bd44088ca51`
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=82ad17d25281f665f0ef2bd44088ca51`
     )
       .then((res) => res.json())
       .then(function (uvData) {
         console.log(uvData);
         var uv = uvData.current.uvi;
         console.log(uv);
-        // var uv = 6;
         $("#uvSet").text(uvData.current.uvi);
         //set colors for UV Index
         if (uv < 3) {
@@ -55,16 +53,40 @@ $(document).ready(function () {
           $("#uvSet").css("background-color", "purple");
         }
       });
+
+    showForecast();
+    function showForecast() {
+      var city = data.name;
+      console.log(city);
+      fetch(
+        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&exclude=minutely,hourly&appid=82ad17d25281f665f0ef2bd44088ca51`
+      )
+        .then((res) => res.json())
+        .then(function (forecastData) {
+          console.log(forecastData);
+          var forecastArray = forecastData.list;
+          console.log(forecastArray);
+
+          forecastArray.forEach(function (forecast, index) {
+            var forecastDateTxt = forecast.dt_txt;
+            console.log(forecastDateTxt);
+
+            var forecastDate = forecastDateTxt.split(" ")[0];
+            var forecastTime = forecastDateTxt.split(" ")[1];
+
+            if (forecastTime === "12:00:00") {
+            }
+          });
+        });
+    }
   }
 });
-
-function showForecast() {}
 
 ///To Do List/////
 //set Default City Name and Country top right - where says must change ***DONE
 //use data from default city to set temp/wind etc to current weather items **** DONE
 //round temperature to nearest full degree. ***DONE
-//colors for UVIndex
+//colors for UVIndex ** DONE
 //use data from default city to set next 5 day to weather forecast items/weather card info
 //update icons for 5 day forecast
 //add event listener on search button to change data to new city
