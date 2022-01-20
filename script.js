@@ -40,12 +40,20 @@ $(document).ready(function () {
         console.log(uvData);
         var uv = uvData.current.uvi;
         console.log(uv);
+        // var uv = 6;
         $("#uvSet").text(uvData.current.uvi);
         //set colors for UV Index
         if (uv < 3) {
-          console.log("Hello");
-          // $("#uvSet").attr("background-color", "green");
-        } else console.log("Hi");
+          $("#uvSet").css("background-color", "#37c849");
+        } else if (uv > 2 && uv < 6) {
+          $("#uvSet").css({ "background-color": "#d0c22f", color: "black" });
+        } else if (uv > 5 && uv < 8) {
+          $("#uvSet").css({ "background-color": "orange", color: "black" });
+        } else if (uv > 7 && uv < 11) {
+          $("#uvSet").css("background-color", "red");
+        } else if (uv > 10) {
+          $("#uvSet").css("background-color", "purple");
+        }
       });
   }
 });
