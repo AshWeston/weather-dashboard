@@ -17,6 +17,13 @@ $(document).ready(function () {
     });
   }
 
+  //event listener on search button
+  $("#search-btn").click(function (event) {
+    event.preventDefault();
+    const searchCity = $("#search-input").val().trim();
+    console.log(searchCity);
+  });
+
   //Display the chosen city data//
   function showWeatherData(data) {
     var icon = data.weather[0].icon;
@@ -32,7 +39,7 @@ $(document).ready(function () {
 
     // get UVI///
     fetch(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=82ad17d25281f665f0ef2bd44088ca51`
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${APIKey}`
     )
       .then((res) => res.json())
       .then(function (uvData) {
@@ -52,33 +59,44 @@ $(document).ready(function () {
         } else if (uv > 10) {
           $("#uvSet").css("background-color", "purple");
         }
+
+        showForecast();
+        function showForecast() {
+          var city = data.name;
+          var forecastArray = uvData.daily;
+          console.log(city);
+          console.log(forecastArray);
+          for (var i = 1; i < 5; i++) {}
+        }
       });
 
-    showForecast();
-    function showForecast() {
-      var city = data.name;
-      console.log(city);
-      fetch(
-        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&exclude=minutely,hourly&appid=82ad17d25281f665f0ef2bd44088ca51`
-      )
-        .then((res) => res.json())
-        .then(function (forecastData) {
-          console.log(forecastData);
-          var forecastArray = forecastData.list;
-          console.log(forecastArray);
+    // showForecast();
+    // function showForecast() {
+    //   var city = data.name;
+    //   console.log(city);
+    //   var forecastArray = data.daily;
+    //   console.log (forecastArray)
+    //   fetch(
+    //     `https://api.openweathermap.org/data/2.5/forecast?q=${city}&exclude=minutely,hourly&appid=${APIKey}`
+    //   )
+    //     .then((res) => res.json())
+    //     .then(function (forecastData) {
+    //       console.log(forecastData);
+    //       var forecastArray = forecastData.list;
+    //       console.log(forecastArray);
 
-          forecastArray.forEach(function (forecast, index) {
-            var forecastDateTxt = forecast.dt_txt;
-            console.log(forecastDateTxt);
+    //       forecastArray.forEach(function (forecast, index) {
+    //         var forecastDateTxt = forecast.dt_txt;
+    //         console.log(forecastDateTxt);
 
-            var forecastDate = forecastDateTxt.split(" ")[0];
-            var forecastTime = forecastDateTxt.split(" ")[1];
+    //         var forecastDate = forecastDateTxt.split(" ")[0];
+    //         var forecastTime = forecastDateTxt.split(" ")[1];
 
-            if (forecastTime === "12:00:00") {
-            }
-          });
-        });
-    }
+    //         if (forecastTime === "00:00:00") {
+    //         }
+    //       });
+    //     });
+    // }
   }
 });
 
