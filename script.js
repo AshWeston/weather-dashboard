@@ -1,10 +1,11 @@
 $(document).ready(function () {
   var APIKey = "82ad17d25281f665f0ef2bd44088ca51";
 
-  var m = moment();
+  var displayDate = moment();
+  var forecast = document.querySelector("#weather-forecast");
 
-  $(".time").text(m.format("hh:mm A")); //set current time
-  $(".date").text(m.format("dddd MMMM DD YYYY")); //set current day
+  $(".time").text(displayDate.format("hh:mm A")); //set current time
+  $(".date").text(displayDate.format("dddd MMMM DD YYYY")); //set current day
 
   //Set the default city to Brisbane//
   setDefaultCity();
@@ -22,6 +23,18 @@ $(document).ready(function () {
     event.preventDefault();
     const searchCity = $("#search-input").val().trim();
     console.log(searchCity);
+    var searchCityURL = `https:api.openweathermap.org/data/2.5/weather?q=${searchCity}&units=metric&appid=${APIKey}`;
+    console.log(searchCityURL);
+    $.ajax({
+      method: "GET",
+      url: searchCityURL,
+    }).then(function (response) {
+      localStorage.setItem(searchCityURL, JSON.stringify(response));
+      var ul = $(
+        `<button type='button' class='list-group-item list-group-item-action' id='${searchCity}'>${searchCity}</li>`
+      );
+      ul.appendTo(".search-history");
+    });
   });
 
   //Display the chosen city data//
@@ -39,7 +52,7 @@ $(document).ready(function () {
 
     // get UVI///
     fetch(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${APIKey}`
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&units=metric&appid=${APIKey}`
     )
       .then((res) => res.json())
       .then(function (uvData) {
@@ -66,37 +79,39 @@ $(document).ready(function () {
           var forecastArray = uvData.daily;
           console.log(city);
           console.log(forecastArray);
-          for (var i = 1; i < 5; i++) {}
+          for (var i = 1; i < 6; i++) {
+            box = document.createElement("div");
+            box.className = "col px-md-5";
+            date = document.createElement("h5");
+            var img = document.createElement("img");
+            img.setAttribute(
+              "src",
+              "http://openweathermap.org/img/wn/" +
+                uvData.daily[i].weather[0].icon +
+                "@2x.png"
+            );
+            img.classList.add("row");
+            futureForecast = document.createElement("ul");
+            futureForecast.classList.add("row");
+            futureTemp = document.createElement("li");
+            futureWind = document.createElement("li");
+            futureHumidity = document.createElement("li");
+            nextdate = displayDate.add(1, "day");
+            date.textContent = nextdate.format("dddd MMMM DD YYYY");
+            futureTemp.textContent =
+              "Temp: " + Math.round(uvData.daily[i].temp.day) + " °C";
+            futureWind.textContent = `Wind: ${uvData.daily[i].wind_speed} m/s`;
+            futureHumidity.textContent = `Humidity: ${uvData.daily[i].humidity} %`;
+            forecast.appendChild(box);
+            futureForecast.appendChild(futureTemp);
+            futureForecast.appendChild(futureWind);
+            futureForecast.appendChild(futureHumidity);
+            box.appendChild(date);
+            box.appendChild(img);
+            box.appendChild(futureForecast);
+          }
         }
       });
-
-    // showForecast();
-    // function showForecast() {
-    //   var city = data.name;
-    //   console.log(city);
-    //   var forecastArray = data.daily;
-    //   console.log (forecastArray)
-    //   fetch(
-    //     `https://api.openweathermap.org/data/2.5/forecast?q=${city}&exclude=minutely,hourly&appid=${APIKey}`
-    //   )
-    //     .then((res) => res.json())
-    //     .then(function (forecastData) {
-    //       console.log(forecastData);
-    //       var forecastArray = forecastData.list;
-    //       console.log(forecastArray);
-
-    //       forecastArray.forEach(function (forecast, index) {
-    //         var forecastDateTxt = forecast.dt_txt;
-    //         console.log(forecastDateTxt);
-
-    //         var forecastDate = forecastDateTxt.split(" ")[0];
-    //         var forecastTime = forecastDateTxt.split(" ")[1];
-
-    //         if (forecastTime === "00:00:00") {
-    //         }
-    //       });
-    //     });
-    // }
   }
 });
 
@@ -105,7 +120,7 @@ $(document).ready(function () {
 //use data from default city to set temp/wind etc to current weather items **** DONE
 //round temperature to nearest full degree. ***DONE
 //colors for UVIndex ** DONE
-//use data from default city to set next 5 day to weather forecast items/weather card info
-//update icons for 5 day forecast
+//use data from default city to set next 5 day to weather forecast items/weather card info ** DONE
+//update icons for 5 day forecast ** DONE
 //add event listener on search button to change data to new city
 //localstorage to save previous searches to "search history"
