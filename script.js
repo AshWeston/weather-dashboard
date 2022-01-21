@@ -30,12 +30,21 @@ $(document).ready(function () {
       method: "GET",
       url: searchCityURL,
     }).then(function (response) {
-      localStorage.setItem(searchCityURL, JSON.stringify(response));
       var ul = $(`<ul id='${searchCity}'>${searchCity}</ul>`);
       ul.appendTo(".search-history");
       showWeatherData(response);
+      localStorage.setItem("cities", JSON.stringify(searchCity));
     });
+    localStorage.setItem("cities", JSON.stringify(searchCity));
+    getLocalStorage();
   });
+
+  function getLocalStorage() {
+    var searchHistory = localStorage.getItem("cities");
+    if (true) {
+      console.log("it's working");
+    }
+  }
 
   //Display the chosen city data//
   function showWeatherData(data) {
