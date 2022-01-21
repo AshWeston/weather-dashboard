@@ -8,15 +8,15 @@ $(document).ready(function () {
   $(".date").text(displayDate.format("dddd MMMM DD YYYY")); //set current day
 
   //Set the default city to Brisbane//
-  setDefaultCity();
+  // setDefaultCity();
 
-  function setDefaultCity() {
-    var defaultURL = `https:api.openweathermap.org/data/2.5/weather?q=Brisbane&units=metric&appid=${APIKey}`;
-    $.get(defaultURL, function (data, status) {
-      console.log(data);
-      showWeatherData(data);
-    });
-  }
+  // function setDefaultCity() {
+  //   var defaultURL = `https:api.openweathermap.org/data/2.5/weather?q=Brisbane&units=metric&appid=${APIKey}`;
+  //   $.get(defaultURL, function (data, status) {
+  //     console.log(data);
+  //     showWeatherData(data);
+  //   });
+  // }
 
   //event listener on search button
   $("#search-btn").click(function (event) {
@@ -30,10 +30,9 @@ $(document).ready(function () {
       url: searchCityURL,
     }).then(function (response) {
       localStorage.setItem(searchCityURL, JSON.stringify(response));
-      var ul = $(
-        `<button type='button' class='list-group-item list-group-item-action' id='${searchCity}'>${searchCity}</li>`
-      );
+      var ul = $(`<ul id='${searchCity}'>${searchCity}</ul>`);
       ul.appendTo(".search-history");
+      showWeatherData(response);
     });
   });
 
