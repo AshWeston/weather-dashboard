@@ -25,6 +25,7 @@ $(document).ready(function () {
     console.log(searchCity);
     var searchCityURL = `https:api.openweathermap.org/data/2.5/weather?q=${searchCity}&units=metric&appid=${APIKey}`;
     console.log(searchCityURL);
+    forecast.innerHTML = "";
     $.ajax({
       method: "GET",
       url: searchCityURL,
