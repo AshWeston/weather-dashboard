@@ -169,3 +169,9 @@ ul {
 .weather-item {
   font-weight: 300;
 }
+
+li {
+  padding-left: 10px;
+  padding-bottom: 5px;
+  display: block;
+}

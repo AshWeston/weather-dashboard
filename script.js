@@ -3,47 +3,45 @@ $(document).ready(function () {
 
   var displayDate = moment();
   var forecast = document.querySelector("#weather-forecast");
+  var cities = JSON.parse(window.localStorage.getItem("cities")) || [];
 
   $(".time").text(displayDate.format("hh:mm A")); //set current time
   $(".date").text(displayDate.format("dddd MMMM DD YYYY")); //set current day
 
-  //Set the default city to Brisbane//
-  // setDefaultCity();
+  if (cities.length > 0) {
+    var lastCity = cities[cities.length - 1];
+    searchCity(lastCity);
+    cities.forEach(function (city) {
+      var ul = $(`<ul id='${city}'>${city}</ul>`);
+      ul.appendTo(".search-history");
+    });
+  }
 
-  // function setDefaultCity() {
-  //   var defaultURL = `https:api.openweathermap.org/data/2.5/weather?q=Brisbane&units=metric&appid=${APIKey}`;
-  //   $.get(defaultURL, function (data, status) {
-  //     console.log(data);
-  //     showWeatherData(data);
-  //   });
-  // }
-
-  //event listener on search button
-  $("#search-btn").click(function (event) {
-    event.preventDefault();
-    const searchCity = $("#search-input").val().trim();
-    console.log(searchCity);
-    var searchCityURL = `https:api.openweathermap.org/data/2.5/weather?q=${searchCity}&units=metric&appid=${APIKey}`;
-    console.log(searchCityURL);
+  function searchCity(city) {
+    var searchCityURL = `https:api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`;
     forecast.innerHTML = "";
     $.ajax({
       method: "GET",
       url: searchCityURL,
     }).then(function (response) {
-      var ul = $(`<ul id='${searchCity}'>${searchCity}</ul>`);
+      var ul = $(`<ul id='${city}'>${city}</ul>`);
       ul.appendTo(".search-history");
       showWeatherData(response);
-      localStorage.setItem("cities", JSON.stringify(searchCity));
     });
-    localStorage.setItem("cities", JSON.stringify(searchCity));
-    getLocalStorage();
+    if (cities.indexOf(city) === -1) {
+      cities.push(city);
+      localStorage.setItem("cities", JSON.stringify(cities));
+    }
+  }
+  //event listener on search button
+  $("#search-btn").click(function (event) {
+    event.preventDefault();
+    var city = $("#search-input").val().trim();
+    searchCity(city);
   });
 
   function getLocalStorage() {
     var searchHistory = localStorage.getItem("cities");
-    if (true) {
-      console.log("it's working");
-    }
   }
 
   //Display the chosen city data//
@@ -123,13 +121,3 @@ $(document).ready(function () {
       });
   }
 });
-
-///To Do List/////
-//set Default City Name and Country top right - where says must change ***DONE
-//use data from default city to set temp/wind etc to current weather items **** DONE
-//round temperature to nearest full degree. ***DONE
-//colors for UVIndex ** DONE
-//use data from default city to set next 5 day to weather forecast items/weather card info ** DONE
-//update icons for 5 day forecast ** DONE
-//add event listener on search button to change data to new city
-//localstorage to save previous searches to "search history"
