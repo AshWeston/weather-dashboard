@@ -19,7 +19,7 @@ $(document).ready(function () {
   }
 
   function searchCity(city) {
-    var searchCityURL = `https:api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`;
+    var searchCityURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`;
     forecast.innerHTML = "";
     $.ajax({
       method: "GET",
