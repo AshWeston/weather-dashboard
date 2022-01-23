@@ -51,6 +51,7 @@ $(document).ready(function () {
     if (element.matches("button") === true) {
       city = element.innerText;
       searchCity(city);
+      console.log(city);
     }
   });
 
@@ -107,7 +108,7 @@ $(document).ready(function () {
             var img = document.createElement("img");
             img.setAttribute(
               "src",
-              "http://openweathermap.org/img/wn/" +
+              "https://openweathermap.org/img/wn/" +
                 uvData.daily[i].weather[0].icon +
                 "@2x.png"
             );
