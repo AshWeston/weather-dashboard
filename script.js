@@ -1,6 +1,5 @@
 $(document).ready(function () {
   var APIKey = "82ad17d25281f665f0ef2bd44088ca51";
-
   var displayDate = moment();
   var forecast = document.querySelector("#weather-forecast");
   var cities = JSON.parse(window.localStorage.getItem("cities")) || [];
@@ -12,8 +11,10 @@ $(document).ready(function () {
     var lastCity = cities[cities.length - 1];
     searchCity(lastCity);
     cities.forEach(function (city) {
-      var ul = $(`<ul id='${city}'>${city}</ul>`);
-      ul.appendTo(".search-history");
+      var button = $(
+        `<button id='${city}' class='historyBox'>${city}</button>`
+      );
+      button.appendTo(".search-history");
     });
   }
 
@@ -24,8 +25,10 @@ $(document).ready(function () {
       method: "GET",
       url: searchCityURL,
     }).then(function (response) {
-      var ul = $(`<ul id='${city}'>${city}</ul>`);
-      ul.appendTo(".search-history");
+      var button = $(
+        `<button id='${city}' class='historyBox'>${city}</button>`
+      );
+      button.appendTo(".search-history");
       showWeatherData(response);
     });
     if (cities.indexOf(city) === -1) {
@@ -38,6 +41,17 @@ $(document).ready(function () {
     event.preventDefault();
     var city = $("#search-input").val().trim();
     searchCity(city);
+    document.getElementById("search-input").value = "";
+  });
+
+  //event listener on search history
+  $(".historyBox").click(function (event) {
+    event.preventDefault();
+    var element = event.target;
+    if (element.matches("button") === true) {
+      city = element.innerText;
+      searchCity(city);
+    }
   });
 
   function getLocalStorage() {

@@ -128,6 +128,12 @@ body {
 
 #search-btn:hover {
   box-shadow: 0 0.4rem 1.4rem 0 rgb(58, 55, 57);
+  color: black;
+}
+
+button:hover {
+  box-shadow: 0 0.4rem 1.4rem 0 rgb(58, 55, 57);
+  color: black;
 }
 
 @media only screen and (max-width: 730px) {
@@ -174,4 +180,17 @@ li {
   padding-left: 10px;
   padding-bottom: 5px;
   display: block;
+}
+
+button {
+  padding: 1px;
+  background-color: rgba(27, 27, 34, 0.2);
+  width: 100%;
+  border-radius: 5px;
+  border-color: white;
+  margin: 2px;
+  border: 1px solid #eee;
+  text-align: center;
+  list-style-type: none;
+  color: #fff;
 }
