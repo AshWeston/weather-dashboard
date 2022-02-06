@@ -72,4 +72,6 @@ The search history will be visible still once the page is refreshed. You can cli
 
 ![image](https://user-images.githubusercontent.com/93314333/150665507-84472b46-aa92-4029-a9fa-dcec5fccbb67.png) 
 
+Uses: moment.js, bootstrap styling and jquery. 
+
  
